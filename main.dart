@@ -18,6 +18,8 @@ class SwitchExample extends StatefulWidget {
 class _SwitchExampleState extends State<SwitchExample> {
   bool light0 = true;
   bool light1 = true;
+  String texto1 = "------";
+  String texto2 = "------";
 
   final MaterialStateProperty<Icon?> thumbIcon =
       MaterialStateProperty.resolveWith<Icon?>(
@@ -42,6 +44,11 @@ class _SwitchExampleState extends State<SwitchExample> {
             onChanged: (bool value) {
               setState(() {
                 light0 = value;
+                if (light0 == true) {
+                  texto1 = "Switch1 Está ativado";
+                } else {
+                  texto1 = "Switch1 Está desativado";
+                }
               });
             },
           ),
@@ -51,6 +58,11 @@ class _SwitchExampleState extends State<SwitchExample> {
             onChanged: (bool value) {
               setState(() {
                 light1 = value;
+                if (light1 == true) {
+                  texto2 = "Switch2 Está ativado";
+                } else {
+                  texto2 = "Switch2 Está desativado";
+                }
               });
             },
             thumbColor: MaterialStateProperty.resolveWith<Color?>(
@@ -58,9 +70,23 @@ class _SwitchExampleState extends State<SwitchExample> {
               if (states.contains(MaterialState.selected)) {
                 return Colors.green; // Cor verde para o estado "check"
               }
-              return Colors.grey; // Cor cinza para o estado "close"
+              return Colors.grey;
             }),
           ),
+          Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: Text(
+              "${texto1}",
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: Text(
+              "${texto2}",
+              textAlign: TextAlign.center,
+            ),
+          )
         ],
       ),
     );
